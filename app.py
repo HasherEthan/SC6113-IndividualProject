@@ -10,9 +10,9 @@ def index():
 
 @app.route('/main',methods=["get","post"])
 def main():
-    r = request.form.get("q")
+    r = request.form.get("n")
     current_time = datetime.datetime.now()
-    conn = sqlite3.connect('dapp.db')
+    conn = sqlite3.connect('dapplication.db')
     c = conn.cursor()
     c.execute("insert into user values (?, ?)", (r, current_time))
     conn.commit()
@@ -34,7 +34,7 @@ def admin():
 
 @app.route('/viewDB',methods=["get","post"])
 def viewDB():
-    conn = sqlite3.connect('dapp.db')
+    conn = sqlite3.connect('dapplication.db')
     c = conn.cursor()
     c.execute("select * from user")
     r = ""
@@ -47,7 +47,7 @@ def viewDB():
 
 @app.route('/delDB',methods=["get","post"])
 def delDB():
-    conn = sqlite3.connect('dapp.db')
+    conn = sqlite3.connect('dapplication.db')
     c = conn.cursor()
     c.execute("delete from user")
     conn.commit()
